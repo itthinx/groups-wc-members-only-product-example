@@ -50,13 +50,13 @@ class Groups_WC_Purchasable {
 	/**
 	 * If the product is in the $group product category, it will return true if the current user
 	 * belongs to the $group, or false if the user doesn't.
-	 * If the product is not in the $group product category, it will return $is_purchasable.
-	 * @param boolean $is_purchasable
+	 * If the product is not in the $group product category, it will return the unmodified value of $purchasable.
+	 * @param boolean $purchasable
 	 * @param WC_Product $product
 	 * @return boolean
 	 */
-	public static function woocommerce_is_purchasable( $is_purchasable, $product ) {
-		$result = $is_purchasable;
+	public static function woocommerce_is_purchasable( $purchasable, $product ) {
+		$result = $purchasable;
 		if ( has_term( self::$group, 'product_cat', $product->id ) ) {
 			if ( $user_id = get_current_user_id() ) {
 				if ( $members = Groups_Group::read_by_name( self::$group ) ) {
