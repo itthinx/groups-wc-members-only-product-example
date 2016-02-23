@@ -20,7 +20,7 @@
 *
 * Plugin Name: Groups WooCommerce Purchasable - Example Plugin
 * Plugin URI: http://www.itthinx.com/plugins/groups
-* Description: An example of how to have products that can only be purchased by group members for WooCommerce with Groups.
+* Description: An example of how to have products that can only be purchased by group members for WooCommerce with Groups. Create a group named "Members" and assign products to a category named "Members". Only users in "Members" can purchase the products in that category.
 * Version: 1.0.0
 * Author: itthinx
 * Author URI: http://www.itthinx.com
@@ -60,7 +60,7 @@ class Groups_WC_Purchasable {
 		if ( has_term( self::$group, 'product_cat', $product->id ) ) {
 			if ( $user_id = get_current_user_id() ) {
 				if ( $members = Groups_Group::read_by_name( self::$group ) ) {
-					$result = Groups_User_Group::read( $user_id, $group_id ) ? true : false;
+					$result = Groups_User_Group::read( $user_id, $members->group_id ) ? true : false;
 				}
 			}
 		}
